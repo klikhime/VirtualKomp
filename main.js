@@ -29,11 +29,6 @@ const camera = new THREE.PerspectiveCamera(
 );
 camera.position.set(4, 5, 11);
 
-const floorTexture = new THREE.TextureLoader().load("grid.png");
-floorTexture.repeat = new THREE.Vector2(20, 20);
-floorTexture.wrapS = THREE.RepeatWrapping;
-floorTexture.wrapT = THREE.RepeatWrapping;
-
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.enablePan = false;
