@@ -74,6 +74,10 @@ h1 {
   background-color: #ff4d4d;
 }
 
+#object-name {
+  display: inline;
+}
+
 @media (max-width: 600px) {
   #popup {
     width: 90%; /* On smaller screens, make pop-up 90% width */

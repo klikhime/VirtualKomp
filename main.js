@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { RGBELoader } from "three/addons/loaders/RGBELoader.js";
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -11,6 +12,10 @@ renderer.setPixelRatio(window.devicePixelRatio);
 
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+renderer.toneMapping = THREE.NeutralToneMapping;
+renderer.toneMappingExposure = 1.25;
+renderer.setClearColor(0x1b1b1b, 1); // 0xffffff untuk putih, 1 adalah opasitas
 
 document.body.appendChild(renderer.domElement);
 
@@ -23,6 +28,11 @@ const camera = new THREE.PerspectiveCamera(
   1000
 );
 camera.position.set(4, 5, 11);
+
+const floorTexture = new THREE.TextureLoader().load("grid.png");
+floorTexture.repeat = new THREE.Vector2(20, 20);
+floorTexture.wrapS = THREE.RepeatWrapping;
+floorTexture.wrapT = THREE.RepeatWrapping;
 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
@@ -53,6 +63,16 @@ spotLight.position.set(0, 25, 0);
 spotLight.castShadow = true;
 spotLight.shadow.bias = -0.0001;
 scene.add(spotLight);
+
+// Ambient Light - Add an ambient light to lighten up the scene
+const ambientLight = new THREE.AmbientLight(0x404040, 2); // Soft white light with higher intensity
+scene.add(ambientLight);
+
+// Directional Light - Adds sunlight effect
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
+directionalLight.position.set(10, 10, 10).normalize();
+directionalLight.castShadow = true;
+scene.add(directionalLight);
 
 // GLTFLoader to load 3D model
 const loader = new GLTFLoader().setPath("public/model3D/");
@@ -113,43 +133,22 @@ function onMouseDown(event) {
   const intersections = raycaster.intersectObjects(scene.children, true);
   if (intersections.length > 0) {
     const selectedObject = intersections[0].object;
-    // const color = new THREE.Color(Math.random(), Math.random(), Math.random());
-    // selectedObject.material.color = color;
-    // console.log(`${selectedObject.name} was clicked!`);
     const objectName = selectedObject.name;
     if (objectData[objectName]) {
       const data = objectData[objectName];
-      // Display the data in the pop-up
       popup.style.display = "block";
       document.getElementById("object-name").innerText = data.name;
       document.getElementById("object-description").innerText =
         data.description;
-      // document.getElementById("object-material").innerText = data.material;
-      // document.getElementById("object-weight").innerText = data.weight;
-      // document.getElementById("object-color").innerText = data.color;
       document.getElementById("object-additional-info").innerText =
         data.additionalInfo;
     }
-    // if (selectedObject.name === "MaterialFBXASC032FBXASC0354_1") {
-    //   // Reattach close button
-    //   // console.log("Monitor");
-    // } else if (selectedObject.name === "MaterialFBXASC032FBXASC0352_1") {
-    //   console.log("Printer");
-    // } else if (selectedObject.name === "MaterialFBXASC032FBXASC0354_ncl1_1_5") {
-    //   console.log("CPU");
-    // } else if (selectedObject.name === "MaterialFBXASC032FBXASC0354_ncl1_1_3") {
-    //   console.log("Keyboard");
-    // } else if (selectedObject.name === "MaterialFBXASC032FBXASC0354_ncl1_1_1") {
-    //   console.log("Mouse");
-    // } else {
-    //   console.log("The selected object does not have the target name.");
-    // }
   }
 }
 
 const objectData = {
   MaterialFBXASC032FBXASC0354_1: {
-    name: "Apa Itu Monitor?",
+    name: "Monitor",
     description:
       "Monitor adalah layar komputer yang menampilkan semua hal yang sedang kita kerjakan di komputer, seperti tulisan, gambar, video, atau game. Ibaratnya, monitor adalah jendela utama untuk melihat dan mengontrol apa yang terjadi di dalam komputer.",
     additionalInfo:
