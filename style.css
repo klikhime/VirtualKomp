@@ -57,7 +57,9 @@ h1 {
   z-index: 10;
   overflow-y: scroll; /* Allow scrolling if content is too large */
   box-sizing: border-box;
-  /* overflow: hidden; */
+  letter-spacing: 1px;
+  line-height: 140%;
+  overflow: hidden;
 }
 
 #close-btn {
@@ -93,7 +95,7 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 8px;
+  padding: 14px;
 }
 .welcome {
   text-align: center;
@@ -102,6 +104,8 @@ h1 {
   color: white;
   max-width: 700px;
   text-align: center;
+  letter-spacing: 2px;
+  line-height: 140%;
 }
 .btn-start {
   background: hsl(0, 0%, 100%);
@@ -173,6 +177,7 @@ h1 {
     height: 80%; /* Pop-up height 80% of the screen */
     left: 5%; /* Center it better on small screens */
     padding: 15px; /* Reduce padding on small screens */
+    overflow: scroll;
   }
   h1 {
     font-size: 2em; /* Reduce font size for mobile devices */
@@ -185,6 +190,7 @@ h1 {
     height: 80%; /* Pop-up height 80% of the screen */
     left: 15%; /* Center it better on tablets */
     padding: 20px; /* Standard padding */
+    overflow: scroll;
   }
   h1 {
     font-size: 3em; /* Set font size for tablet devices */
