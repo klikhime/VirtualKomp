@@ -6,6 +6,7 @@ import { RGBELoader } from "three/addons/loaders/RGBELoader.js";
 const startBtn = document.getElementById("start-btn");
 startBtn.addEventListener("click", () => {
   document.getElementById("boxWelcome").style.display = "none";
+
   initThreeJS();
 });
 

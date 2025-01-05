@@ -61,9 +61,10 @@
       // Fungsi tambahan untuk tombol "Bantuan"
       function showHelp() {
         const welcome = document.getElementById("welcome");
-        const desk = document.getElementById("desk-app");
+        const btnHelp = document.querySelector(".btn-help");
+        btnHelp.style.display = "none";
         welcome.style.display = "none";
-        document.getElementById("desk-app").innerHTML = "Klik pada objek 3D untuk menampilkan informasi deskriptif tentang komponen tersebut.";
+        document.getElementById("desk-app").innerHTML = "Klik pada objek 3D untuk mengeksplorasi dan mendapatkan informasi lengkap tentang komponen tersebut.";
 
 
       }
