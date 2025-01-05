@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import { RGBELoader } from "three/addons/loaders/RGBELoader.js";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 
 const startBtn = document.getElementById("start-btn");
 startBtn.addEventListener("click", () => {
@@ -26,7 +26,12 @@ renderer.setClearColor(0x1b1b1b, 1); // 0xffffff untuk putih, 1 adalah opasitas
 
 document.body.appendChild(renderer.domElement);
 
+const environment = new RoomEnvironment();
+const pmremGenerator = new THREE.PMREMGenerator(renderer);
+
 const scene = new THREE.Scene();
+
+scene.environment = pmremGenerator.fromScene(environment).texture;
 
 const camera = new THREE.PerspectiveCamera(
   45,
