@@ -56,6 +56,7 @@ const groundMaterial = new THREE.MeshStandardMaterial({
 });
 const groundMesh = new THREE.Mesh(groundGeometry, groundMaterial);
 groundMesh.castShadow = false;
+groundMesh.position.set(0, -0.3, 0);
 groundMesh.receiveShadow = true;
 scene.add(groundMesh);
 
