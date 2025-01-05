@@ -3,6 +3,12 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { RGBELoader } from "three/addons/loaders/RGBELoader.js";
 
+const startBtn = document.getElementById("start-btn");
+startBtn.addEventListener("click", () => {
+  document.getElementById("boxWelcome").style.display = "none";
+  initThreeJS();
+});
+
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 
@@ -115,7 +121,9 @@ animate();
 
 const raycaster = new THREE.Raycaster();
 
-document.addEventListener("mousedown", onMouseDown);
+function initThreeJS() {
+  document.addEventListener("mousedown", onMouseDown);
+}
 
 function onMouseDown(event) {
   const coords = new THREE.Vector2(

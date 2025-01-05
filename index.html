@@ -19,8 +19,9 @@
   </head>
   <body>
     <div id="heading">
-      <h1>VirtualKomp.</h1>
+      <h1>Edukom>
       <div class="border"></div>
+      <h3>"Kenali komputer, kuasai dunia digital!"</h3>
     </div>
     <div id="progress-container">
       <div id="progress">Loading...</div>
@@ -34,12 +35,39 @@
         ?
       </p>
       <p id="object-description"></p>
-      <!-- <p><strong>Material:</strong> <span id="object-material"></span></p>
-      <p><strong>Weight:</strong> <span id="object-weight"></span></p>
-      <p><strong>Color:</strong> <span id="object-color"></span></p> -->
       <p><strong>Bagaimana Cara Kerjanya?</strong></p>
       <p id="object-additional-info"></p>
     </div>
+    <div class="box-model" id="boxWelcome">
+      <div class="box-welcome">
+        <h1 class="welcome" id="welcome">Selamat Datang</h1>
+        <p class="desk-app" id="desk-app">Edukom adalah aplikasi web yang interaktif untuk mengenal lebih dekat berbagai komponen komputer, seperti monitor, mouse, keyboard, dan printer.</p>
+        <div class="btn-wrap">
+          <button class="btn-start" id="start-btn">Mulai</button>
+          <button class="btn-help" onclick="showHelp()">Bantuan</button>
+        </div>
+      </div>
+    </div>
     <script type="module" src="main.js"></script>
+
+    <script>
+      // Fungsi yang dijalankan ketika tombol "Mulai" ditekan
+      function startApp() {
+        const boxWelcome = document.getElementById("boxWelcome");
+
+        boxWelcome.style.display = "none"; // Menyembunyikan box welcome
+        // alert("Aplikasi dimulai!"); // Contoh aksi tambahan
+      }
+
+      // Fungsi tambahan untuk tombol "Bantuan"
+      function showHelp() {
+        const welcome = document.getElementById("welcome");
+        const desk = document.getElementById("desk-app");
+        welcome.style.display = "none";
+        document.getElementById("desk-app").innerHTML = "Klik pada objek 3D untuk menampilkan informasi deskriptif tentang komponen tersebut.";
+
+
+      }
+    </script>
   </body>
 </html>
